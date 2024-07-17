@@ -3,16 +3,15 @@ import Image from "next/image";
 import iconConfirmed from "../assets/icon-order-confirmed.svg";
 
 const Confirm = ({ cartItems, setShowConfirm, setCartItems }) => {
-  console.log(cartItems);
   return (
-    <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-50 grid place-content-center">
-      <div className="bg-white p-8 rounded-xl flex flex-col gap-4 w-screen max-w-[36rem]">
+    <div className="absolute top-0 left-0 w-screen  min-h-full bg-black bg-opacity-50 z-50 ">
+      <div className="bg-white p-8 mt-28 rounded-xl flex flex-col gap-4 w-screen max-w-[36rem] mx-auto">
         <Image src={iconConfirmed} alt="confirmed" width={46} height={46} />
         <h2 className="text-4xl font-bold">Order Confirmed</h2>
         <p className="text-Rose500 text-sm">We hope you enjoy your food!</p>
         <div className="bg-Rose50 rounded-lg px-4 my-4">
           {cartItems.map((item) => (
-            <div className="flex">
+            <div key={item.name} className="flex">
               <div className="flex justify-between items-center py-4 w-full gap-4 border-b border-Rose100">
                 <Image
                   className="rounded-md"
@@ -38,7 +37,7 @@ const Confirm = ({ cartItems, setShowConfirm, setCartItems }) => {
               </div>
             </div>
           ))}
-          <div className="flex justify-between py-6 text-xs">
+          <div className="flex justify-between items-center py-6 text-xs">
             <div>Order Total</div>
             <div className="text-2xl font-bold">
               $
@@ -53,7 +52,7 @@ const Confirm = ({ cartItems, setShowConfirm, setCartItems }) => {
             setShowConfirm(false);
             setCartItems([]);
           }}
-          className="flex justify-center w-full bg-Red rounded-full font-semibold text-Rose100 p-3"
+          className="flex justify-center w-full bg-Red hover:bg-[hsl(14,86%,30%,var(--tw-bg-opacity))] rounded-full font-semibold text-Rose100 p-3"
         >
           Start New Order
         </button>

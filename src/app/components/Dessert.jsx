@@ -2,8 +2,6 @@
 import React from "react";
 import Image from "next/image";
 import iconAddToCart from "../assets/icon-add-to-cart.svg";
-import iconIncrement from "../assets/icon-increment-quantity.svg";
-import iconDecrement from "../assets/icon-decrement-quantity.svg";
 import { useState, useEffect } from "react";
 
 const Dessert = ({
@@ -17,20 +15,43 @@ const Dessert = ({
   removeItemHandler,
 }) => {
   const [quantity, setQuantity] = useState(0);
+  const [imageSrc, setImageSrc] = useState(image.desktop);
 
   useEffect(() => {
     setQuantity(cartItems.find((item) => item.name === name)?.quantity || 0);
   }, [cartItems]);
 
+  const updateImageSrc = () => {
+    if (window.innerWidth <= 500) {
+      setImageSrc(image.mobile);
+    } else if (window.innerWidth > 500 && window.innerWidth <= 768) {
+      setImageSrc(image.tablet);
+    } else if (window.innerWidth >= 768) {
+      setImageSrc(image.desktop);
+    }
+  };
+
+  useEffect(() => {
+    updateImageSrc();
+
+    window.addEventListener("resize", updateImageSrc);
+
+    return () => {
+      window.removeEventListener("resize", updateImageSrc);
+    };
+  }, []);
+
   return (
     <div className="w-fit select-none">
       <div>
         <Image
-          src={image.desktop.slice(1)}
+          src={imageSrc.slice(1)}
           alt={name}
           width={250}
           height={250}
-          className="rounded-lg"
+          className={
+            "max-sm:w-full rounded-lg border-Red " + (quantity && "border-2")
+          }
         />
       </div>
       <div
@@ -67,28 +88,34 @@ const Dessert = ({
                   }
                 }
               }}
-              className=" border rounded-full size-5 p-[3px]"
+              className=" border rounded-full size-5 p-[3px] text-Rose50 hover:text-Red hover:bg-Rose50"
             >
-              <Image
-                src={iconDecrement}
-                alt="Decrement quantity"
-                width={12}
-                height={12}
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                fill="currentColor"
+                viewBox="0 0 10 2"
+              >
+                <path d="M0 .375h10v1.25H0V.375Z" />
+              </svg>
             </button>
             <span className="text-white ">{quantity}</span>
             <button
               onClick={() => {
                 addToCartHandler(name, price);
               }}
-              className="border rounded-full size-5 p-[3px]"
+              className="border rounded-full size-5 p-[3px] text-Rose50 hover:text-Red hover:bg-Rose50"
             >
-              <Image
-                src={iconIncrement}
-                alt="Increment quantity"
-                width={12}
-                height={12}
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                fill="currentColor"
+                viewBox="0 0 10 10"
+              >
+                <path d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z" />
+              </svg>
             </button>
           </div>
         )}
