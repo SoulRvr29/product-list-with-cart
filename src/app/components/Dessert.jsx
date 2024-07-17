@@ -23,11 +23,11 @@ const Dessert = ({
   }, [cartItems]);
 
   return (
-    <div className="w-fit">
+    <div className="w-fit select-none">
       <div>
         <Image
           src={image.desktop.slice(1)}
-          alt="Waffle"
+          alt={name}
           width={250}
           height={250}
           className="rounded-lg"

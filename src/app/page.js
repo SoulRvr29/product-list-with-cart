@@ -1,12 +1,14 @@
 "use client";
 import Dessert from "./components/Dessert";
 import Cart from "./components/Cart";
+import Confirm from "./components/Confirm";
 import data from "./data.json";
 import Footer from "./components/Footer";
 import { useState } from "react";
 
 export default function Home() {
   const [cartItems, setCartItems] = useState([]);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const addToCartHandler = (name, price) => {
     if (cartItems.some((item) => item.name === name)) {
@@ -16,7 +18,13 @@ export default function Home() {
         )
       );
     } else {
-      setCartItems([...cartItems, { name: name, price: price, quantity: 1 }]);
+      const thumbnail = data
+        .find((item) => item.name === name)
+        .image.thumbnail.slice(1);
+      setCartItems([
+        ...cartItems,
+        { name: name, price: price, quantity: 1, thumbnail },
+      ]);
     }
   };
 
@@ -54,7 +62,18 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <Cart cartItems={cartItems} removeItemHandler={removeItemHandler} />
+        <Cart
+          cartItems={cartItems}
+          removeItemHandler={removeItemHandler}
+          setShowConfirm={setShowConfirm}
+        />
+        {showConfirm && (
+          <Confirm
+            cartItems={cartItems}
+            setShowConfirm={setShowConfirm}
+            setCartItems={setCartItems}
+          />
+        )}
       </main>
       <Footer />
     </>

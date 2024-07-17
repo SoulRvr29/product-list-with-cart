@@ -41,7 +41,7 @@ const CartLi = ({ item, removeItemHandler }) => {
   );
 };
 
-const Cart = ({ cartItems, removeItemHandler }) => {
+const Cart = ({ cartItems, removeItemHandler, setShowConfirm }) => {
   return (
     <div className="bg-white rounded-lg p-5 min-w-96 h-fit max-[900px]:min-w-full ">
       <div className="text-Red font-bold text-2xl flex gap-2 mb-4">
@@ -88,12 +88,20 @@ const Cart = ({ cartItems, removeItemHandler }) => {
             </div>
           </div>
           <div className="flex justify-center gap-2 bg-Rose50 p-4 rounded-lg">
-            <Image src={iconCarbonNeutral} width={22} height={22} />
+            <Image
+              alt="carbon neutral"
+              src={iconCarbonNeutral}
+              width={22}
+              height={22}
+            />
             <p className="text-sm">
               This is a <b>carbon-neutral</b> delivery
             </p>
           </div>
-          <button className="text-Rose50 bg-Red p-4 w-full rounded-full mt-6 hover:bg-[hsl(14,86%,30%,var(--tw-bg-opacity))]">
+          <button
+            onClick={() => setShowConfirm(true)}
+            className="text-Rose50 bg-Red p-4 w-full rounded-full mt-6 hover:bg-[hsl(14,86%,30%,var(--tw-bg-opacity))]"
+          >
             {" "}
             Confirm Order
           </button>
