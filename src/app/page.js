@@ -41,10 +41,13 @@ export default function Home() {
   };
 
   return (
-    <>
-      <main className="flex gap-2 py-20 max-[900px]:flex-col max-[900px]:pt-4">
+    <div className="w-screen">
+      {showConfirm && (
+        <div className="z-10 w-screen h-full fixed top-0 left-0 bg-black opacity-50"></div>
+      )}
+      <main className="flex gap-2 py-20 max-[900px]:flex-col max-[900px]:pt-4 max-w-[1440px] mx-auto">
         {" "}
-        <div>
+        <div className="relative">
           <h1 className="font-bold text-[40px] mb-8">Desserts</h1>
           <div className="flex max-[900px]:flex-col flex-wrap gap-6  max-[900px]:items-center">
             {data.map((item) => (
@@ -76,6 +79,6 @@ export default function Home() {
         )}
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
