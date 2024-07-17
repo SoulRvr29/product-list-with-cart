@@ -4,7 +4,7 @@ import Image from "next/image";
 import iconAddToCart from "../assets/icon-add-to-cart.svg";
 import iconIncrement from "../assets/icon-increment-quantity.svg";
 import iconDecrement from "../assets/icon-decrement-quantity.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Dessert = ({
   name,
@@ -17,6 +17,10 @@ const Dessert = ({
   removeItemHandler,
 }) => {
   const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    setQuantity(cartItems.find((item) => item.name === name)?.quantity || 0);
+  }, [cartItems]);
 
   return (
     <div className="w-fit">
@@ -33,7 +37,6 @@ const Dessert = ({
         onClick={() => {
           if (quantity === 0) {
             addToCartHandler(name, price);
-            setQuantity(quantity + 1);
           }
         }}
         className={
@@ -58,7 +61,6 @@ const Dessert = ({
             <button
               onClick={() => {
                 if (quantity > 0) {
-                  setQuantity(quantity - 1);
                   decrementQuantityHandler(name);
                   if (quantity === 1) {
                     removeItemHandler(name);
@@ -77,7 +79,6 @@ const Dessert = ({
             <span className="text-white ">{quantity}</span>
             <button
               onClick={() => {
-                setQuantity(quantity + 1);
                 addToCartHandler(name, price);
               }}
               className="border rounded-full size-5 p-[3px]"

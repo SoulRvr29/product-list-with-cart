@@ -18,7 +18,6 @@ export default function Home() {
     } else {
       setCartItems([...cartItems, { name: name, price: price, quantity: 1 }]);
     }
-    console.log(cartItems);
   };
 
   const decrementQuantityHandler = (name) => {
