@@ -17,9 +17,19 @@ body {
   position: relative;
   background-color: var(--Rose50);
   color: var(--Rose900);
-  /* max-width: 1440px; */
-  /* border: 1px solid var(--Rose300); */
   min-height: 100vh;
-  margin: 0 auto;
   padding: 1rem clamp(1rem, 5vw, 110px);
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

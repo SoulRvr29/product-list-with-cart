@@ -4,7 +4,7 @@ import iconConfirmed from "../assets/icon-order-confirmed.svg";
 
 const Confirm = ({ cartItems, setShowConfirm, setCartItems }) => {
   return (
-    <div className="absolute top-0 left-0 w-full  min-h-full z-50 ">
+    <div className="absolute top-0 left-0 z-50 w-full min-h-full fade-in">
       <div className="bg-white p-8 mt-28 rounded-xl flex flex-col gap-4 w-screen max-w-[36rem] mx-auto">
         <Image src={iconConfirmed} alt="confirmed" width={46} height={46} />
         <h2 className="text-4xl font-bold">Order Confirmed</h2>

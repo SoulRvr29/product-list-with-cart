@@ -99,7 +99,13 @@ const Cart = ({ cartItems, removeItemHandler, setShowConfirm }) => {
             </p>
           </div>
           <button
-            onClick={() => setShowConfirm(true)}
+            onClick={() => {
+              setShowConfirm(true);
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }}
             className="text-Rose50 bg-Red p-4 w-full rounded-full mt-6 hover:bg-[hsl(14,86%,30%,var(--tw-bg-opacity))]"
           >
             {" "}

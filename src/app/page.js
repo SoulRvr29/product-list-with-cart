@@ -41,15 +41,15 @@ export default function Home() {
   };
 
   return (
-    <div className="w-screen">
+    <div className="flex justify-center z-0">
       {showConfirm && (
-        <div className="z-10 w-screen h-full fixed top-0 left-0 bg-black opacity-50"></div>
+        <div className="z-10 w-screen h-full fixed top-0 left-0 bg-black bg-opacity-50 fade-in"></div>
       )}
-      <main className="flex gap-2 py-20 max-[900px]:flex-col max-[900px]:pt-4 max-w-[1440px] mx-auto">
+      <main className="flex justify-center gap-2 py-20 max-[900px]:flex-col max-[900px]:pt-0 max-w-[1440px] fade-in">
         {" "}
         <div className="relative">
-          <h1 className="font-bold text-[40px] mb-8">Desserts</h1>
-          <div className="flex max-[900px]:flex-col flex-wrap gap-6  max-[900px]:items-center">
+          <h1 className="font-bold text-[40px] mb-8 max-sm:mb-4">Desserts</h1>
+          <div className="flex max-w-[850px] max-[900px]:flex-col flex-wrap gap-6  max-[900px]:items-center">
             {data.map((item) => (
               <Dessert
                 key={item.name}
@@ -70,14 +70,14 @@ export default function Home() {
           removeItemHandler={removeItemHandler}
           setShowConfirm={setShowConfirm}
         />
-        {showConfirm && (
-          <Confirm
-            cartItems={cartItems}
-            setShowConfirm={setShowConfirm}
-            setCartItems={setCartItems}
-          />
-        )}
       </main>
+      {showConfirm && (
+        <Confirm
+          cartItems={cartItems}
+          setShowConfirm={setShowConfirm}
+          setCartItems={setCartItems}
+        />
+      )}
       <Footer />
     </div>
   );

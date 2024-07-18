@@ -50,7 +50,8 @@ const Dessert = ({
           width={250}
           height={250}
           className={
-            "max-sm:w-full rounded-lg border-Red " + (quantity && "border-2")
+            "max-sm:w-full rounded-lg border-2 border-Red border-opacity-0 " +
+            (quantity && "border-opacity-100")
           }
         />
       </div>
