@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/product-list-with-cart-uS4HlcHqFz](https://www.frontendmentor.io/solutions/product-list-with-cart-uS4HlcHqFz)
 - Live Site URL: [https://product-list-with-cart-five.vercel.app/](https://product-list-with-cart-five.vercel.app/)
 
 ### Built with
